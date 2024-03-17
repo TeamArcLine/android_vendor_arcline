@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$(call inherit-product, build/target/product/sdk_phone_x86.mk)
+$(call inherit-product, build/target/product/sdk_phone_x86_64.mk)
 
-include vendor/lineage/build/target/product/lineage_generic_target.mk
+include vendor/arcline/build/target/product/arc_generic_target.mk
 
 # Always build modules from source
 PRODUCT_MODULE_BUILD_FROM_SOURCE := true
@@ -23,8 +23,8 @@ PRODUCT_MODULE_BUILD_FROM_SOURCE := true
 PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := relaxed
 
 # Overrides
-PRODUCT_NAME := lineage_sdk_phone_x86
-PRODUCT_MODEL := LineageOS Android SDK built for x86
+PRODUCT_NAME := arc_sdk_phone_x86_64
+PRODUCT_MODEL := LineageOS Android SDK built for x86_64
 
 PRODUCT_SDK_ADDON_NAME := lineage
 PRODUCT_SDK_ADDON_SYS_IMG_SOURCE_PROP := $(LOCAL_PATH)/source.properties

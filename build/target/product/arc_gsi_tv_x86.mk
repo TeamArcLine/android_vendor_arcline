@@ -12,12 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$(call inherit-product, device/generic/common/gsi_arm.mk)
+$(call inherit-product, device/google/atv/products/aosp_tv_x86.mk)
 
-include vendor/lineage/build/target/product/lineage_generic_target.mk
+include vendor/arcline/build/target/product/arc_generic_tv_target.mk
 
-PRODUCT_USE_DYNAMIC_PARTITION_SIZE := true
+TARGET_USES_64_BIT_BINDER := true
 
-TARGET_NO_KERNEL_OVERRIDE := true
+PRODUCT_NAME := arc_gsi_tv_x86
 
-PRODUCT_NAME := lineage_gsi_arm
+PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS :=
+
+PRODUCT_SDK_ADDON_NAME := lineage
+PRODUCT_SDK_ADDON_SYS_IMG_SOURCE_PROP := $(LOCAL_PATH)/source.properties
