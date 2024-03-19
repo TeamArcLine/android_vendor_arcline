@@ -79,6 +79,11 @@ ifneq ($(TARGET_DISABLE_LINEAGE_SDK), true)
 include vendor/arcline/config/lineage_sdk_common.mk
 endif
 
+#gapps
+ifeq ($(ARC_BUILD_VARIANT), Gapps)
+$(call inherit-product, vendor/gapps/products/gapps.mk)
+endif
+
 # Do not include art debug targets
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
 
