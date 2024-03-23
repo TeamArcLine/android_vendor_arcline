@@ -74,15 +74,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.control_privapp_permissions=enforce
 
-ifneq ($(TARGET_DISABLE_LINEAGE_SDK), true)
 # Lineage SDK
+ifneq ($(TARGET_DISABLE_LINEAGE_SDK), true)
 include vendor/arcline/config/lineage_sdk_common.mk
 endif
 
-#gapps
-ifeq ($(ARC_BUILD_VARIANT), Gapps)
-$(call inherit-product, vendor/gapps/products/gapps.mk)
-endif
 
 # Do not include art debug targets
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
@@ -110,17 +106,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     build-manifest
 
-# Lineage packages
-ifeq ($(PRODUCT_IS_ATV),)
-PRODUCT_PACKAGES += \
-    ExactCalculator \
-    Jelly
-endif
-
 ifeq ($(PRODUCT_IS_AUTOMOTIVE),)
 PRODUCT_PACKAGES += \
-    LineageParts \
-    LineageSetupWizard
+    LineageParts
 endif
 
 PRODUCT_PACKAGES += \
@@ -241,9 +229,35 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/crowdin/overlay
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     vendor/arcline/build/target/product/security/lineage
 
+TARGET_IS_PIXEL ?= false
+TARGET_IS_PIXEL_6 ?= false
+TARGET_IS_PIXEL_7 ?= false
+TARGET_IS_PIXEL_7A ?= false
+TARGET_IS_PIXEL_8 ?= false
+TARGET_IS_PIXEL_FOLD ?= false
+TARGET_IS_PIXEL_TABLET ?= false
+TARGET_PIXEL_STAND_SUPPORTED ?= false
+TARGET_SUPPORTS_QUICK_TAP ?= false
+TARGET_USES_LEGACY_BOOTANIMATION ?= false
+TARGET_USES_MINI_GAPPS ?= false
+TARGET_USES_PICO_GAPPS ?= false
+
+# Inherit from GMS product config
+ifeq ($(TARGET_USES_MINI_GAPPS),true)
+$(call inherit-product, vendor/gms/gms_mini.mk)
+else ifeq ($(TARGET_USES_PICO_GAPPS),true)
+$(call inherit-product, vendor/gms/gms_pico.mk)
+else
+$(call inherit-product, vendor/gms/gms_full.mk)
+endif
+
+# RRO Overlays
+$(call inherit-product, vendor/arcline/config/rro_overlays.mk)
+
 include vendor/arcline/config/version.mk
 
 -include vendor/arcline-priv/keys/keys.mk
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
+
 -include vendor/arcline/config/partner_gms.mk

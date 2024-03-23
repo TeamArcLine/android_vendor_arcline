@@ -10,30 +10,8 @@ include vendor/arcline/config/lineage_audio.mk
 
 # Default notification/alarm sounds
 PRODUCT_PRODUCT_PROPERTIES += \
-    ro.config.notification_sound=Argon.ogg \
-    ro.config.alarm_alert=Hassium.ogg
-
-# Apps
-PRODUCT_PACKAGES += \
-    Backgrounds \
-    Glimpse
-
-ifeq ($(PRODUCT_TYPE), go)
-PRODUCT_PACKAGES += \
-    TrebuchetQuickStepGo
-
-PRODUCT_DEXPREOPT_SPEED_APPS += \
-    TrebuchetQuickStepGo
-else
-PRODUCT_PACKAGES += \
-    TrebuchetQuickStep
-
-PRODUCT_DEXPREOPT_SPEED_APPS += \
-    TrebuchetQuickStep
-endif
-
-PRODUCT_PACKAGES += \
-    TrebuchetOverlay
+    ro.config.notification_sound=Eureka.ogg \
+    ro.config.alarm_alert=Fresh_start.ogg
 
 # Charger
 PRODUCT_PACKAGES += \
