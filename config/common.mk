@@ -112,6 +112,9 @@ PRODUCT_PACKAGES += \
 endif
 
 PRODUCT_PACKAGES += \
+    Backgrounds
+    
+PRODUCT_PACKAGES += \
     LineageSettingsProvider \
     Updater
 
